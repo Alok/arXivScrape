@@ -6,6 +6,8 @@
 
 #include "beargit.h"
 #include "util.h"
+#include <assert.h>
+
 
 /* Implementation Notes:
  *
@@ -101,7 +103,16 @@ int beargit_add(const char* filename) {
 
 int beargit_status() {
   /* COMPLETE THE REST */
-
+  
+  FILE *tracked;
+  char *line;
+  char *mode = "r";
+  tracked = fopen(".beargit/.index", mode);
+  printf("this works\n");
+  while (fgets(line, 80, tracked) != NULL) {
+    printf("%s\n", line);
+  }
+  printf("this works\n");
   return 0;
 }
 
