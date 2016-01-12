@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+# test that our required commands and directories in fact exist
+test -f /dev/null || echo "/dev/null does not exist! Are you using Microsoft Windows? This script does not support Windows (yet)."; exit 1
+test -d /tmp || echo "/tmp does not exist! Are you using Microsoft Windows? This script does not support Windows (yet)."; exit 1
+command -v python3 >/dev/null 2>&1 || { echo >&2 "I require Python 3 but it's not installed. Install it at https://www.python.org/downloads/"; exit 1; }
+command -v python -c 'import pkgutil; print(0 if pkgutil.find_loader("bs4") else "")' > /dev/null 2>&1 || { echo >&2 "I require Beautiful Soup 4 but it's not installed. Install it with the terminal command 'pip install bs4' (don't type the quotes)"; exit 1;}
+command -v calibredb >/dev/null 2>&1 || { echo >&2 "I require calibredb but it's not installed. Install it at http://calibre-ebook.com/"; exit 1; }
+
+# $@ is all arguments passed to script and is quoted to prevent incorrect word
+# splitting. We then redirect STDOUT to /dev/null but not STDERR in case there
+# *is* an error.
+python3 ./arxiv-scrape.py "$@" 1> /dev/null
