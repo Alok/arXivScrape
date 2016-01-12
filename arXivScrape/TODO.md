@@ -31,7 +31,9 @@ langs to use:
 # EXAMPLE TO PARSE
 
 
-Mathematics > Geometric Topology # parse tags by separating with '>', calibre ignores spaces or you can trim them anyway with sed ^/$
+Mathematics > Geometric Topology
+
+##### parse tags by separating with '>', calibre ignores spaces or you can trim them anyway with sed ^/$
 
 Title: The Role Of Link Concordance In Knot Concordance # trim 'Title: '
 
@@ -59,9 +61,18 @@ http://arxiv.org/abs/1601.02555 ->  http://arxiv.org/pdf/1601.02555v1.pdf #appen
 - [/] URL (string)
 - [/] PDF_URL (string)
 - [/] TITLE (string)
-- [] authors (list?)
-- [] tags (list?)
+- [/] authors
+- [/] tags (list?)
 - [] abstract (string)
 
 ## dependencies
-lynx
+- lynx
+- calibre and its CLI (`calibredb`)
+- `curl`
+- Unix system
+
+
+## assumptions
+title:, author:, abstract: are unique matches in the page
+/tmp dir exists
+
