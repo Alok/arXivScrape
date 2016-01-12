@@ -1,5 +1,13 @@
 #!/bin/sh
-
+# This ugly monster that I copied from StackOverflow gets the current working
+# directory and watches out for a lot of hazards like symlinks.
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 # test that our required commands and directories in fact exist
 test -f /dev/null || echo "/dev/null does not exist! Are you using Microsoft Windows? This script does not support Windows (yet)."; exit 1
@@ -11,4 +19,4 @@ command -v calibredb >/dev/null 2>&1 || { echo >&2 "I require calibredb but it's
 # $@ is all arguments passed to script and is quoted to prevent incorrect word
 # splitting. We then redirect STDOUT to /dev/null but not STDERR in case there
 # *is* an error.
-python3 ./arxiv-scrape.py "$@" 1> /dev/null
+python3 $DIR/arxiv-scrape.py "$@" 1> /dev/null

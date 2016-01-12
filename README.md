@@ -20,6 +20,13 @@ also planned, for those of us who get emailed a lot of preprints or use RSS
 The goal is to make this a true `calibre` plugin, with support for all
 platforms and no external dependencies.
 
+## How to Use
+Move the script to somewhere on your `$PATH` (run `echo $PATH` if you don't know where that is) or keep track of what folder you downloaded this script into and run this in the terminal:
+
+`exec-scrape.sh file1 file2`
+
+
+
 ## Dependencies
 - \*nix System (Mac/Linux or GNU/Linux if you're Richard Stallman)
 - Python 3
