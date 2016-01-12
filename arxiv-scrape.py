@@ -3,7 +3,6 @@
 """
 This module scrapes the arXiv and adds the PDFS and metadata to calibre.
 """
-
 # to download the page
 import urllib.request
 import sys
@@ -19,18 +18,18 @@ import subprocess
 # alias functions
 # soup = bs4.BeautifulSoup(html, 'lxml')
 
+def deleteChar(expression, char):
+    """ wrapper to 'tr -d' a char """
+    return re.sub(char, '', expression)
+
 # [/] ============= Download Page =============
 
 # # TODO TODO extend to mult args
 # for arg in argv[1:]:
-
-# XXX does wrapping in strings protect against spaces in filenames?
-url = "%s" % (sys.argv[1])
-url = "%s" % (url)
-
+for url in sys.argv[1:]:
 # TODO figure out how to make a temp file to store this in /tmp
 
-htmlFile = 'temp.html'
+# htmlFile = 'temp.html'
 # urllib.request.urlretrieve(url)
 f    = urllib.request.urlopen(url)
 data = f.read()
@@ -49,7 +48,7 @@ pdf_URL = pdf_URL[0]
 pdf_URL = pdf_URL['content']
 pdf_URL += ".pdf"
 
-pdfFile = "/tmp/temp.pdf"
+# pdfFile = "/tmp/temp.pdf"
 # urllib.request.urlretrieve(pdf_URL, pdfFile)
 # urllib.request.urlretrieve(pdf_URL, "/tmp/temp.pdf")
 
@@ -62,11 +61,10 @@ with open('code.pdf', "wb") as code:
 
 # type: str
 title = soup.findAll(attrs={"name": "citation_title"})[0]['content']
-# strip dollar signs from LateX names to avoid a world of pain later.
-# title = re.sub('\$', '', title)
 
 # [/] ============= Date Published =============
 
+# TODO convert date to calibre format
 # format = "2016/01/09"
 
 date = soup.findAll(attrs={"name": "citation_date"})
@@ -74,50 +72,57 @@ date = date[0]
 date = date['content']
 
 # [/] ============= arXiv ID =============
+
 arxivID = soup.findAll(attrs={"name": "citation_arxiv_id"})
 arxivID = arxivID[0]
 arxivID = arxivID['content']
 
 # [/] ============= Get Author =============
+
 # type: list
 authorList = soup.findAll(attrs={"name": "citation_author"})
+
 # init list (which is turned into a str later) to fill with
 # authors concatenated together
 authors = []
+
+# pre-process each author string and add to list of authors
 for author in authorList:
     author = author['content']
+# separate parts of names
     author = author.split(',')
-# reverse lastname, firstname
+
+# lastname, firstname -> first, last
     author.reverse()
     # print (author)
-# turn list into string with a space in between
+# turn list into string with a space in between so words are still separate
     author = ' '.join(author)
-    # print (author)
+
 # add to rest of authors
     authors.append(author)
-# print ('authors:', authors)
-# fold in '&' for calibre to recognize multiple authors
-# turn list into string
+
+# fold in '&' for calibre to recognize multiple authors and 'stringify' list
 authors = ' & '.join(authors)
 
 # [/] ============= Get Tags =============
+
+# type: BS object
 unformattedTagBSObj = soup.find_all("div", "subheader")
+# type: list
 unformattedTagList = unformattedTagBSObj[0]
+# type: string
 unformattedTagStr = unformattedTagList.get_text()
 
-
-def deleteChar(expression, char):
-    """ wrapper to 'tr -d' a char """
-    return re.sub(char, '', expression)
-
 # strip newlines
-tagStr = re.sub("\n", '', unformattedTagStr)
+# tagStr = re.sub("\n", '', unformattedTagStr)
+tagStr = deleteChar(tagStr, '\n')
 
 # change > to comma to make calibre recognize multiple tags
 tags = re.sub(">|<", ' , ', tagStr)
 
 # personal tags
 # XXX remove this line unless you like my tags being added to yours.
+
 tags += " , vlib2, arXiv, Research Paper"
 
 # [] ============= Abstract =============
