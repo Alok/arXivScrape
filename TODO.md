@@ -32,4 +32,7 @@ python 3 is installed
 - [] bundle into calibre plugin that can look up by arXiv ID or URl
    - [] port to python 2 [:(] as calibre does not support python 3.
 - [] make truly-cross platform
+- [] add javascript snippet for [chromium vim](https://github.com/1995eaton/chromium-vim) to execute on arXiv pages
+- [] package external dependencies (use virtualenv)
+- [] UN-HARD-CODE everything. Whoever reads this, bug me about it.
 
