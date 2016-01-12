@@ -1,26 +1,8 @@
-- run `page count` plugin on each PDF  (find how plugin scripts work)
-- create newsbeuter macro for people who get arXiv via RSS (use link as arg for script)
-
-
-## vars
-- [/] url
-- [/] pdf_URL
-- [/] title
-- [/] authors
-- [/] tags
-- [] abstract
-
-## dependencies
-- Beautiful Soup
-- Python 3
-- calibre and its CLI (`calibredb`)
-- Unix system
-
-
-## assumptions
-`/tmp` dir exists
-python 3 is installed
-
+## Features to add
+- [] run `page count` plugin on each PDF  (find how plugin scripts work)
+- [] create `newsbeuter` macro for people who get arXiv via RSS (use link as arg for script)
+- [] create `mutt` macro
+- [] pull abstract
 - [] add `lxml` for consistent experience OR find the HTML parser used by default
 - [] explicitly add HTML parser to silence warnings
 - [] add to '/tmp/arxiv-scrape/' rather than in current directory
@@ -35,4 +17,9 @@ python 3 is installed
 - [] add javascript snippet for [chromium vim](https://github.com/1995eaton/chromium-vim) to execute on arXiv pages
 - [] package external dependencies (use virtualenv)
 - [] UN-HARD-CODE everything. Whoever reads this, bug me about it.
+
+## Assumptions
+- `/tmp` directory exists
+- python 3 is installed
+
 
