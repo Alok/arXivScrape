@@ -1,0 +1,115 @@
+   [1]Cornell University
+   [2]Cornell University [3]Library
+   [4]We gratefully acknowledge support from
+   the Simons Foundation
+   and member institutions
+
+[5]arXiv.org > [6]math > arXiv:1601.02555
+
+   Search or Article-id
+   ([7]Help | [8]Advanced search)
+   ________________________   [All papers] Go!
+
+   Full-text links:
+
+Download:
+
+     * [9]PDF
+     * [10]Other formats
+
+   ([11]license)
+
+Current browse context:
+
+   math.GT
+   [12]< prev | [13]next >
+   [14]new | [15]recent | [16]1601
+
+Change to browse by:
+
+   [17]math
+
+References & Citations
+
+     * [18]NASA ADS
+
+Bookmark
+
+   ([19]what is this?)
+   [20]CiteULike logo [21]BibSonomy logo [22]Mendeley logo [23]del.icio.us
+   logo [24]Digg logo [25]Reddit logo [26]ScienceWISE logo
+
+Mathematics > Geometric Topology
+
+Title: The Role Of Link Concordance In Knot Concordance
+
+   Authors: [27]Diego Vela
+   (Submitted on 11 Jan 2016)
+
+     Abstract: Satellite constructions on a knot can be thought of as
+     taking some strands of a knot and then tying in another knot. Using
+     satellite constructions one can construct many distinct isotopy
+     classes of knots. Pushing this further one can construct distinct
+     concordance classes of knots which preserve some algebraic
+     invariants. Infection is a generalization of satellite operations,
+     which has been previously studies. An infection by a string link can
+     be thought of as grabbing a knot at multiple locations and then
+     tying in a link. Cochran, Friedl and Techner showed that any
+     algebraically slice knot is the result of infecting a slice knot by
+     a string link [5]. In this paper we use the infection construction
+     to show that there exist knots which arise from infections by
+     $n$-component string links that cannot be obtained by infecting
+     along $(n-1)$- component string links.
+
+   Comments: 25 pates, 8 figures
+   Subjects: Geometric Topology (math.GT)
+   Cite as:  [28]arXiv:1601.02555 [math.GT]
+             (or [29]arXiv:1601.02555v1 [math.GT] for this version)
+
+Submission history
+
+   From: Diego Vela [[30]view email]
+   [v1] Mon, 11 Jan 2016 18:55:32 GMT (1607kb,D)
+   [31]Which authors of this paper are endorsers? | [32]Disable MathJax
+   ([33]What is MathJax?)
+
+   Link back to: [34]arXiv, [35]form interface, [36]contact.
+
+References
+
+   1. http://www.cornell.edu/
+   2. http://www.cornell.edu/
+   3. http://www.library.cornell.edu/
+   4. https://confluence.cornell.edu/x/FYBnDg
+   5. http://arxiv.org/
+   6. http://arxiv.org/list/math/recent
+   7. http://arxiv.org/help
+   8. http://arxiv.org/find
+   9. http://arxiv.org/pdf/1601.02555v1
+  10. http://arxiv.org/format/1601.02555v1
+  11. http://arxiv.org/licenses/nonexclusive-distrib/1.0/
+  12. http://arxiv.org/prevnext?site=arxiv.org&id=1601.02555&context=math.GT&function=prev
+  13. http://arxiv.org/prevnext?site=arxiv.org&id=1601.02555&context=math.GT&function=next
+  14. http://arxiv.org/list/math.GT/new
+  15. http://arxiv.org/list/math.GT/recent
+  16. http://arxiv.org/list/math.GT/1601
+  17. http://arxiv.org/abs/1601.02555?context=math
+  18. http://adsabs.harvard.edu/cgi-bin/bib_query?arXiv:1601.02555
+  19. http://arxiv.org/help/social_bookmarking
+  20. http://arxiv.org/ct?url=http%3A%2F%2Fwww.citeulike.org%2Fposturl%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1601.02555%26title%3DThe%2520Role%2520Of%2520Link%2520Concordance%2520In%2520Knot%2520Concordance%26authors%3D&v=4d635e8a
+  21. http://arxiv.org/ct?url=http%3A%2F%2Fwww.bibsonomy.org%2FBibtexHandler%3FrequTask%3Dupload%26url%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1601.02555%26description%3DThe%2520Role%2520Of%2520Link%2520Concordance%2520In%2520Knot%2520Concordance&v=9ecc9a2b
+  22. http://arxiv.org/ct?url=http%3A%2F%2Fwww.mendeley.com%2Fimport%2F%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1601.02555&v=43ebe6db
+  23. http://arxiv.org/ct?url=http%3A%2F%2Fdel.icio.us%2Fpost%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1601.02555%26description%3DThe%2520Role%2520Of%2520Link%2520Concordance%2520In%2520Knot%2520Concordance&v=112a5e71
+  24. http://arxiv.org/ct?url=http%3A%2F%2Fdigg.com%2Fsubmit%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1601.02555%26title%3DThe%2520Role%2520Of%2520Link%2520Concordance%2520In%2520Knot%2520Concordance&v=73510087
+  25. http://arxiv.org/ct?url=http%3A%2F%2Freddit.com%2Fsubmit%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1601.02555%26title%3DThe%2520Role%2520Of%2520Link%2520Concordance%2520In%2520Knot%2520Concordance&v=6d053769
+  26. http://arxiv.org/ct?url=http%3A%2F%2Fsciencewise.info%2Fbookmarks%2Fadd%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1601.02555&v=b56e8c21
+  27. http://arxiv.org/find/math/1/au:+Vela_D/0/1/0/all/0/1
+  28. http://arxiv.org/abs/1601.02555
+  29. http://arxiv.org/abs/1601.02555v1
+  30. https://arxiv.org/show-email/8ed8988e/1601.02555
+  31. http://arxiv.org/auth/show-endorsers/1601.02555
+  32. javascript:setMathjaxCookie()
+  33. http://arxiv.org/help/mathjax/
+  34. http://arxiv.org/
+  35. http://arxiv.org/form
+  36. http://arxiv.org/help/contact
