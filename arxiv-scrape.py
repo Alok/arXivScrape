@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 import subprocess
 
 # alias functions
-# soup = bs4.BeautifulSoup(html, 'lxml')
+# soup = bs4.BeautifulSoup(html, 'html.parser')
 
 def deleteChar(expression, char):
     """ wrapper to 'tr -d' a char """
@@ -37,10 +37,10 @@ for url in sys.argv[1:]:
         code.write(data)
 
 # TODO fix 'no tree builder' error
-# soup = BeautifulSoup(open(filename), html, 'lxml')
+# soup = BeautifulSoup(open(filename), "html.parser")
 
 # read file into bs4
-    soup = BeautifulSoup(open('code.html'))
+    soup = BeautifulSoup(open('code.html'),"html.parser")
 
 # [/] ============= PDF URL =============
     pdf_URL = soup.findAll(attrs={"name": "citation_pdf_url"})

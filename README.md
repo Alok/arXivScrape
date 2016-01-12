@@ -23,13 +23,15 @@ platforms and no external dependencies.
 ## How to Use
 Move the script to somewhere on your `$PATH` (run `echo $PATH` if you don't know where that is) and run
 
-
+`chmod +x exec-scrape.sh`
 `exec-scrape.sh file1 file2`
 
 OR keep track of what folder you downloaded this script into and run this *in the folder containing it*:
 
+`chmod +x ./exec-scrape.sh`
 `./exec-scrape.sh file1 file2`
 
+NOTE: `chmod +x ..` only has to be run once. It gives the file executable permission. Also note that if you run the script on the same URL, it will not add duplicates to your calibre library.
 
 
 ## Dependencies

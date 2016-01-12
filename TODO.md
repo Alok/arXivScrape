@@ -3,8 +3,8 @@
 - [] create `newsbeuter` macro for people who get arXiv via RSS (use link as arg for script)
 - [] create `mutt` macro
 - [] pull abstract
+- [/] explicitly add HTML parser to silence warnings
 - [] add `lxml` for consistent experience OR find the HTML parser used by default
-- [] explicitly add HTML parser to silence warnings
 - [] add to '/tmp/arxiv-scrape/' rather than in current directory
    - for some reason absolute file paths as attempted here did not work
 - [] change shebang to /usr/bin/python3 for those who have it installed
