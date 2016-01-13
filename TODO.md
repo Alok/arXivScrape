@@ -5,7 +5,7 @@
 - [] pull abstract
 - [/] explicitly add HTML parser to silence warnings
 - [] add `lxml` for consistent experience OR find the HTML parser used by default
-- [] add to '/tmp/arxiv-scrape/' rather than in current directory
+- [] add to '/tmp/arxivScrape/' rather than in current directory
    - for some reason absolute file paths as attempted here did not work
 - [] change shebang to /usr/bin/python3 for those who have it installed
    - figure out how to check if a file/dir exists (and create it if necessary)

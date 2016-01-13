@@ -20,4 +20,4 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 # $@ is all arguments passed to script and is quoted to prevent incorrect word
 # splitting. We then redirect STDOUT to /dev/null but not STDERR in case there
 # *is* an error.
-python3 "$DIR"/arxiv-scrape.py "$@" 1> /dev/null
+python3 "$DIR"/arxivScrape.py "$@" 1> /dev/null
