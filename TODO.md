@@ -16,10 +16,13 @@
 - [] make truly-cross platform
 - [] add javascript snippet for [chromium vim](https://github.com/1995eaton/chromium-vim) to execute on arXiv pages
 - [] package external dependencies (use virtualenv)
-- [] UN-HARD-CODE everything. Whoever reads this, bug me about it.
+- [/] UN-HARD-CODE everything. Whoever reads this, bug me about it.
+- [] add `setup.py` file to handle dependencies
+- [] add `if __name__ == '__main__:'`
+      urls = sys.argv[1:]
+      some_function(urls)
 
 ## Assumptions
-- `/tmp` directory exists
-- python 3 is installed
-
+- beautiful soup 4 is installed
+- python 2 is installed
 

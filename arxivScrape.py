@@ -1,47 +1,58 @@
-# FIXME change to /usr/bin for those who don't have homebrew python3
-#! /usr/local/bin/python3
+#! /usr/bin/python
 """
 This module scrapes the arXiv and adds the PDFs and metadata to calibre.
 """
 # to download the page
 import urllib.request
+import tempfile
 import sys
 import re
+import subprocess
 
 # to parse the HTML for its lovely data
 from bs4 import BeautifulSoup
-import subprocess
 
 def deleteChar(expression, char):
-    """ wrapper to 'tr -d' a char """
+    """ Wrapper to delete a character. """
     return re.sub(char, '', expression)
+def swapChar(expression, char, replacementChar):
+    """ Wrapper to change a single character in a string. """
+    return re.sub(char, replacementChar, expression)
 
 # [/] ============= Download Page =============
 
 for url in sys.argv[1:]:
-# TODO Replace file paths with tempfiles so you can run multiple in parallel.
 
-# TODO Wrap in 'with'.
     f    = urllib.request.urlopen(url)
-    data = f.read()
-    with open('code.html', "wb") as code:
-        code.write(data)
+    htmlData = f.read()
+    # tempHTML = tempfile.NamedTemporaryFile(suffix='.html')
+    # with open(tempHTML, "wb") as html:
+    #     html.write(htmlData)
+    # f.close()
 
-# TODO fix 'no tree builder' error
-    soup = BeautifulSoup(open('code.html'),"html.parser")
+    with tempfile.NamedTemporaryFile(suffix='.html') as temp:
+        temp.write(htmlData)
+        # temp.flush()
+        soup = BeautifulSoup(open(temp.name),"html.parser")
 
 # [/] ============= PDF URL =============
+
     pdf_URL = soup.findAll(attrs={"name": "citation_pdf_url"})
     pdf_URL = pdf_URL[0]
     pdf_URL = pdf_URL['content']
     pdf_URL += ".pdf"
 
-
-# TODO wrap in 'with'
     g    = urllib.request.urlopen(pdf_URL)
-    data = g.read()
-    with open('code.pdf', "wb") as code:
-        code.write(data)
+    pdfData = g.read()
+    # tempPDF = tempfile.NamedTemporaryFile(suffix='.pdf')
+#     with open(tempPDF, "wb") as pdf:
+# # write the PDF downloaded into our temp PDF file
+#         pdf.write(pdfData)
+
+    with tempfile.NamedTemporaryFile(suffix='.pdf') as tempPDF:
+        tempPDF.write(pdfData)
+        # tempPDF.flush()
+    # g.close()
 
 # [/] ============= Get Title =============
 
@@ -51,12 +62,13 @@ for url in sys.argv[1:]:
 
 # [/] ============= Date Published =============
 
-# TODO Convert date to calibre format.
-# format = "2016/01/09"
+# Convert date to calibre format.
+# e.g.: "2016/01/09" -> "2016-01-09"
 
     date = soup.findAll(attrs={"name": "citation_date"})
     date = date[0]
     date = date['content']
+    date = swapChar('/', '-', date)
 
 # [/] ============= arXiv ID =============
 
@@ -70,7 +82,7 @@ for url in sys.argv[1:]:
 
 # Init list (which is turned into a str later) to fill with
 # authors concatenated together.
-    authors = []
+    authors    = []
 
 # Pre-process each author string and add to list of authors.
     for author in authorList:
@@ -97,13 +109,14 @@ for url in sys.argv[1:]:
     unformattedTagList   = unformattedTagBSObj[0]
     unformattedTagStr    = unformattedTagList.get_text()
 
-# Strip newlines and change '>' to comma to make calibre recognize multiple
-# tags.
+# Strip newlines and change '>' and '<'  to commas to make calibre
+# recognize them as multiple tags.
     tagStr               = deleteChar(unformattedTagStr, '\n')
-    tags                 = re.sub(">|<", ' , ', tagStr)
+    tags                 = swapChar(">", ' , ', tagStr)
+    tags                 = swapChar("<", ' , ', tagStr)
 
 # Personal tags.
-# XXX Remove this line unless you like my tags being added to yours.
+# Remove this line unless you like my tags being added to yours.
 
     tags                += " , vlib2, arXiv, Research Paper"
 
@@ -115,16 +128,10 @@ for url in sys.argv[1:]:
 
 # [] ============= Add to Calibre =============
 
-# TODO unhardcode this
-    subprocess.call(["calibredb", "add", "--authors=%s" % (authors), "--tags=%s" % (tags), "--title=%s" % (title), 'code.pdf'])
-# XXX FILL ME IN
-# subprocess.call(["calibredb", "add", "--authors=%s" % (authors), "--tags=%s" \
-# % (tags), "--title=%s" % (title), "%s" % ()])
+    subprocess.call(["calibredb", "add", "--authors=%s" %
+                     (authors), "--tags=%s" % (tags), "--title=%s"
+                     % (title), tempPDF.name])
 
-# TODO un hardcode htmlFile pdfFile and deal with spaces and tabs in filenames
 
 # Clean up after ourselves.
-# subprocess.call(["rm %s %s" %(htmlFile, pdfFile)])
-    subprocess.call(["rm", "code.html", "code.pdf"])
-# XXX FILL ME IN
-# subprocess.call(["rm", "%s" % (), "%s" % ()])
+    # subprocess.call(["rm", "%s" % (temp.name), "%s" % (tempPDF.name)])
