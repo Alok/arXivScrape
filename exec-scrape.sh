@@ -4,7 +4,7 @@
 if [[ -e /dev/null ]]; then true; else echo "/dev/null does not exist! Are you using Microsoft Windows? This script does not support Windows (yet)."; exit 1; fi
 if [[ -e /tmp ]]; then true; else echo "/tmp does not exist! Are you using Microsoft Windows? This script does not support Windows (yet)."; exit 1; fi
 command -v python3 >/dev/null 2>&1 || { echo >&2 "I require Python 3 but it's not installed. Install it at https://www.python.org/downloads/"; exit 1; }
-command -v python -c 'import pkgutil; print(0 if pkgutil.find_loader("bs4") else "")' > /dev/null 2>&1 || { echo >&2 "I require Beautiful Soup 4 but it's not installed. Install it with the terminal command 'pip install bs4' (don't type the quotes)"; exit 1;}
+command -v python -c 'import pkgutil; print(0 if pkgutil.find_loader("bs4") else "")' > /dev/null 2>&1 || pip install -r requirements.txt
 command -v calibredb >/dev/null 2>&1 || { echo >&2 "I require calibredb but it's not installed. Install it at http://calibre-ebook.com/"; exit 1; }
 
 # This ugly monster that I copied from StackOverflow gets the current working
@@ -20,4 +20,6 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 # $@ is all arguments passed to script and is quoted to prevent incorrect word
 # splitting. We then redirect STDOUT to /dev/null but not STDERR in case there
 # *is* an error.
-python3 "$DIR"/arxivScrape.py "$@" 1> /dev/null
+script="$DIR/arxivScrape.py"
+chmod u+x "$script"
+python "$script" "$@" 1> /dev/null

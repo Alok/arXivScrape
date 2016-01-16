@@ -36,8 +36,9 @@ NOTE: `chmod +x ..` only has to be run once. It gives the file executable permis
 
 ## Dependencies
 - \*nix System (Mac/Linux or GNU/Linux if you're Richard Stallman)
-- Python 3
+- Python 2
 - Beautiful Soup 4 (get it with `pip install bs4`)
+TODO 
 - `calibre`
 
 ## Contributing

@@ -21,6 +21,7 @@
 - [] add `if __name__ == '__main__:'`
       urls = sys.argv[1:]
       some_function(urls)
+- [] separate into several files to run each part? (downloading and parsing)
 
 ## Assumptions
 - beautiful soup 4 is installed
