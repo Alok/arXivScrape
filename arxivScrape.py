@@ -8,6 +8,7 @@ import tempfile
 import sys
 import re
 import subprocess
+import requests
 
 # to parse the HTML for its lovely data
 from bs4 import BeautifulSoup
