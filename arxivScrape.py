@@ -18,6 +18,9 @@ from bs4 import BeautifulSoup
 def deleteChar(expression, char):
     """ Wrapper to delete a character. """
     return re.sub(char, '', expression)
+def swapChar(expression, char, replacementChar):
+    """ Wrapper to change a single character in a string. """
+    return re.sub(char, replacementChar, expression)
 
 # [/] ============= Download Page =============
 
