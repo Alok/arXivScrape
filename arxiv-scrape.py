@@ -1,5 +1,4 @@
-# FIXME change to /usr/bin for those who don't have homebrew python3
-#! /usr/local/bin/python3
+#! /usr/local/env python3
 """
 This module scrapes the arXiv and adds the PDFS and metadata to calibre.
 """
@@ -7,16 +6,13 @@ This module scrapes the arXiv and adds the PDFS and metadata to calibre.
 import urllib.request
 import sys
 import re
-
-# to parse the HTML for its lovely data
-from bs4 import BeautifulSoup
-# import lxml
-
-# to actually enter data into calibre
 import subprocess
 
-# alias functions
-# soup = bs4.BeautifulSoup(html, 'lxml')
+# to parse the HTML for its lovely data
+import lxml
+from bs4 import BeautifulSoup
+
+# to actually enter data into calibre
 
 def deleteChar(expression, char):
     """ wrapper to 'tr -d' a char """
@@ -36,11 +32,11 @@ for url in sys.argv[1:]:
     with open('code.html', "wb") as code:
         code.write(data)
 
-# TODO fix 'no tree builder' error
-# soup = BeautifulSoup(open(filename), html, 'lxml')
+
+    soup = BeautifulSoup(open('code.html'), "lxml")
 
 # read file into bs4
-    soup = BeautifulSoup(open('code.html'))
+    # soup = BeautifulSoup(open('code.html'))
 
 # [/] ============= PDF URL =============
     pdf_URL = soup.findAll(attrs={"name": "citation_pdf_url"})
