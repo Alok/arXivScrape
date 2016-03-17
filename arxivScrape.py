@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/local/env python3
 """
 This module scrapes the arXiv and adds the PDFs and metadata to calibre.
 """
@@ -8,33 +8,31 @@ import tempfile
 import sys
 import re
 import subprocess
-import requests
 
 # to parse the HTML for its lovely data
+import lxml
 from bs4 import BeautifulSoup
+
+# to actually enter data into calibre
 
 def deleteChar(expression, char):
     """ Wrapper to delete a character. """
     return re.sub(char, '', expression)
-def swapChar(expression, char, replacementChar):
-    """ Wrapper to change a single character in a string. """
-    return re.sub(char, replacementChar, expression)
 
 # [/] ============= Download Page =============
 
 for url in sys.argv[1:]:
 
     f    = urllib.request.urlopen(url)
-    htmlData = f.read()
-    # tempHTML = tempfile.NamedTemporaryFile(suffix='.html')
-    # with open(tempHTML, "wb") as html:
-    #     html.write(htmlData)
-    # f.close()
+    data = f.read()
+    with open('code.html', "wb") as code:
+        code.write(data)
 
-    with tempfile.NamedTemporaryFile(suffix='.html') as temp:
-        temp.write(htmlData)
-        # temp.flush()
-        soup = BeautifulSoup(open(temp.name),"html.parser")
+
+    soup = BeautifulSoup(open('code.html'), "lxml")
+
+# read file into bs4
+    # soup = BeautifulSoup(open('code.html'))
 
 # [/] ============= PDF URL =============
 
