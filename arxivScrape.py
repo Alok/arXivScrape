@@ -19,8 +19,6 @@ def deleteChar(expression, char):
 for url in sys.argv[1:]:
     # TODO figure out how to make a temp file to store this in /tmp
 
-    # htmlFile = 'temp.html'
-    # urllib.request.urlretrieve(url)
     f    = urllib.request.urlopen(url)
     data = f.read()
     with open('code.html', "wb") as code:
@@ -29,7 +27,6 @@ for url in sys.argv[1:]:
 
     soup = BeautifulSoup(open('code.html'), "lxml")
 
-# read file into bs4
 # soup = BeautifulSoup(open('code.html'))
 
 # [/] ============= PDF URL =============
@@ -38,9 +35,6 @@ for url in sys.argv[1:]:
     pdf_URL = pdf_URL['content']
     pdf_URL += ".pdf"
 
-# pdfFile = "/tmp/temp.pdf"
-# urllib.request.urlretrieve(pdf_URL, pdfFile)
-# urllib.request.urlretrieve(pdf_URL, "/tmp/temp.pdf")
 
     g    = urllib.request.urlopen(pdf_URL)
     data = g.read()
@@ -51,7 +45,7 @@ for url in sys.argv[1:]:
 
     # type: str
     title = soup.findAll(attrs={"name": "citation_title"})[0]['content']
-    # Strip accents. Sorry guys, but I like my library to be searchable with ASCII.
+    # Strip accents.
     title = re.sub("\\'([a-zA-z])", '\1', title)
 
 # [/] ============= Date Published =============
@@ -71,11 +65,9 @@ for url in sys.argv[1:]:
 
 # [/] ============= Get Author =============
 
-    # type: list
+
     authorList = soup.findAll(attrs={"name": "citation_author"})
 
-    # Init list (which is turned into a str later) to fill with
-    # authors concatenated together.
     authors = []
 
     # Pre-process each author string and add to list of authors.
@@ -86,7 +78,6 @@ for url in sys.argv[1:]:
 
 # lastname, firstname -> first, last
     author.reverse()
-# print (author)
 # Turn list into string with a space in between so words are still separate.
     author = ' '.join(author)
 
@@ -110,8 +101,7 @@ for url in sys.argv[1:]:
     tagStr               = deleteChar(unformattedTagStr, '\n')
     tags                 = re.sub(">|<", ' , ', tagStr)
 
-# Personal tags.
-# XXX Remove this line unless you like my tags being added to yours.
+#  Add some extra tags.
 
     tags                += " , vlib2, arXiv, Research Paper"
 
@@ -119,22 +109,13 @@ for url in sys.argv[1:]:
     abstract = soup.find_all("blockquote", "abstract mathjax")
     abstract = abstract[0]
 # type: str (with lots of newlines
-# XXX Do the newlines break passing them in the command line?
     abstract = abstract.contents[2]
 
 # [] ============= Add to Calibre =============
 
 # TODO unhardcode this
     subprocess.call(["calibredb", "add", "--authors=%s" % (authors), "--tags=%s" % (tags), "--title=%s" % (title), 'code.pdf'])
-    # XXX FILL ME IN
-# subprocess.call(["calibredb", "add", "--authors=%s" % (authors), "--tags=%s" \
-# % (tags), "--title=%s" % (title), "%s" % ()])
 
-# TODO un hardcode htmlFile pdfFile and deal with spaces and tabs in filenames
 
-# Clean up after ourselves.
-# subprocess.call(["rm %s %s" %(htmlFile, pdfFile)])
     subprocess.call(["rm", "code.html", "code.pdf"])
-# XXX FILL ME IN
-# subprocess.call(["rm", "%s" % (), "%s" % ()])
 
